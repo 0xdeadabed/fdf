@@ -53,8 +53,8 @@ static void	fill_matrix(t_map *map, int fd)
 		x = -1;
 		while (++x < map->w)
 		{
-			map->z_mt[y][x] = ft_atoi(split[x]);
-			map->clrs[y][x] = parse_color(map, split);
+			map->z_matrix[y][x] = ft_atoi(split[x]);
+			map->colors[y][x] = parse_color(map, split);
 		}
 		free_split(split);
 		free(line);

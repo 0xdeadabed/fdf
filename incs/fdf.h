@@ -21,8 +21,8 @@ typedef struct	s_map
 {
 	int	w;
 	int	h;
-	int	**z_mt;
-	int	**clrs;
+	int	**z_matrix;
+	int	**colors;
 }	t_map;
 
 // Map utils

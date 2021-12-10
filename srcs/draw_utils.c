@@ -6,13 +6,13 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:43:54 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:05:17 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:48:49 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	isometric(t_vars *vars, int *x, int *y, int *z)
+void	isometric(t_vars *vars, int *x, int *y, int z)
 {
 	int	prev_y;
 	int	prev_x;
@@ -25,41 +25,41 @@ void	isometric(t_vars *vars, int *x, int *y, int *z)
 	*y = -z + (prev_x + prev_y) * sin(0.523599);
 }
 
-void	rot_x(t_vars *vars, int *y, int *z)
+void	rotate_x(t_vars *vars, int *y, int *z)
 {
 	float	prev_y;
 
 	prev_y = *y;
-	*y = (prev_y * cos(vars->rot_x)) + (*z * sin(vars->rot_x));
-	*z = (-prev_y * sin(vars->rot_x)) + (*z * cos(vars->rot_x));
+	*y = (prev_y * cos(vars->rotate_x)) + (*z * sin(vars->rotate_x));
+	*z = (-prev_y * sin(vars->rotate_x)) + (*z * cos(vars->rotate_x));
 }
 
-void	rot_y(t_vars *vars, int *x, int *z)
+void	rotate_y(t_vars *vars, int *x, int *z)
 {
 	float	prev_x;
 
 	prev_x = *x;
-	*x = (*x * cos(vars->rot_y)) + (*z * sin(vars->rot_y));
-	*z = (-prev_x * sin(vars->rot_y)) + (*z * cos(vars->rot_y));
+	*x = (*x * cos(vars->rotate_y)) + (*z * sin(vars->rotate_y));
+	*z = (-prev_x * sin(vars->rotate_y)) + (*z * cos(vars->rotate_y));
 }
 
-void	rot_z(t_vars *vars, int *x, int *y)
+void	rotate_z(t_vars *vars, int *x, int *y)
 {
 	float	prev_x;
 
 	prev_x = *x;
-	*x = (*x * cos(vars->rot_z)) - (*y * sin(vars->rot_z));
-	*y = (prev_x * sin(vars->rot_z)) + (*z * cos(vars->rot_x));
+	*x = (*x * cos(vars->rotate_z)) - (*y * sin(vars->rotate_z));
+	*y = (prev_x * sin(vars->rotate_z)) + (*y * cos(vars->rotate_x));
 }
 
-t_point	get_coords(t_vars *vars, t_point point)
+t_point	get_coordinations(t_vars *vars, t_point point)
 {
 	point.x *= vars->zoom;
 	point.y *= vars->zoom;
 	point.z *= (vars->zoom / 10) * vars->flat;
-	rot_x(vars, &point.y, &point.z);
-	rot_y(vars, &point.x, &point.z);
-	rot_z(vars, &point.x, &point.y);
+	rotate_x(vars, &point.y, &point.z);
+	rotate_y(vars, &point.x, &point.z);
+	rotate_z(vars, &point.x, &point.y);
 	isometric(vars, &point.x, &point.y, point.z);
 	point.x += vars->shift_x;
 	point.y += vars->shift_y;

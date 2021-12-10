@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:24:42 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 13:38:05 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:26:10 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static double	percent(int start, int end, int current)
 	return (place / distance);
 }
 
+static int	get_light(int start, int end, double percent)
+{
+	return ((int)((1 - percent) * start + percent * end));
+}
+
 int	get_color(t_point current, t_point start, t_point end, t_point delta)
 {
 	int		r;
@@ -37,9 +42,9 @@ int	get_color(t_point current, t_point start, t_point end, t_point delta)
 		percentage = percent(start.x, end.x, current.x);
 	else
 		percentage = percent(start.y, end.y, current.y);
-	r = get_light((start.color >> 16) & 0xFF, (end.color >> 16) && 0xFF, percentage);
+	r = get_light((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF, percentage);
 	g = get_light((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF, percentage);
-	b = get_light((start.color & 0xFF, end.color & 0xFF, percentage));
+	b = get_light(start.color & 0xFF, end.color & 0xFF, percentage);
 	return ((r << 16) | (g << 8) | b);
 }
 

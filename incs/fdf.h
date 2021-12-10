@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:53:12 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 17:08:20 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:53:57 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ typedef struct	s_map
 // Map utils
 t_map	*init_map(char *file);
 void	alloc_map(t_map *map);
+void	get_z(t_map *map);
 
 // Error
 void	perror_exit(const char *str);
@@ -187,9 +188,12 @@ void	malloc_error(void);
 void	free_map(t_map *map);
 void	free_all(t_vars *vars);
 
+// MLX
+int	mlx_main(t_map *map);
+
 // MLX_UTILS
 void	reset_vars(t_vars *vars);
-int		init_vars(t_vars *vars);
+int		init_vars(t_vars *vars, t_map *map);
 void	init_mlx(t_vars *vars);
 
 // COLORS
@@ -198,4 +202,23 @@ int	get_z_color(t_vars *vars, int current_z);
 
 // FREE
 void	free_split(char **split);
+
+// DRAW
+void	draw(t_vars *vars);
+
+// DRAW_UTILS
+void	img_pixel_put(t_vars *vars, int x, int y, int color);
+t_point get_coordinations(t_vars *vars, t_point point);
+t_point	new_point(int x, int y, t_vars *vars);
+
+// CONTROLS
+void	zoom(int keycode, t_vars *vars);
+void	move(int keycode, t_vars *vars);
+void	flattening(int keycode, t_vars *vars);
+void	rotation(int keycode, t_vars *vars);
+
+// HOOKS
+int	key_hook(int keycode, t_vars *vars);
+int	close_win(t_vars *vars);
+
 #endif

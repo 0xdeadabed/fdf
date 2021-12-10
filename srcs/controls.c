@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 15:19:28 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:25:36 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:45:13 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	flattening(int keycode, t_vars *vars)
 		if (vars->flat < 10)
 			vars->flat += 0.1;
 	}
-	if (keycode == K_MENU)
+	if (keycode == K_MINUS)
 	{
 		if (vars->flat > 0)
 			vars->flat -= 0.1;
@@ -55,15 +55,15 @@ void	flattening(int keycode, t_vars *vars)
 void	rotation(int keycode, t_vars *vars)
 {
 	if (keycode == K_U)
-		vars->rot_x += ROT_SHIFT;
+		vars->rotate_x += ROT_SHIFT;
 	if (keycode == K_J)
-		vars->rot_x -= ROT_SHIFT;
+		vars->rotate_x -= ROT_SHIFT;
 	if (keycode == K_I)
-		vars->rot_y += ROT_SHIFT;
+		vars->rotate_y += ROT_SHIFT;
 	if (keycode == K_K)
-		vars->rot_y -= ROT_SHIFT;
+		vars->rotate_y -= ROT_SHIFT;
 	if (keycode == K_O)
-		vars->rot_z += ROT_SHIFT;
+		vars->rotate_z += ROT_SHIFT;
 	if (keycode == K_L)
-		vars->rot_z -= ROT_SHIFT;
+		vars->rotate_z -= ROT_SHIFT;
 }

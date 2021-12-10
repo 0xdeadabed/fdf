@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:14:16 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:37:55 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:40:14 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	alloc_map(t_map *map)
 
 	map->z_matrix = (int **)malloc(sizeof(int *) * map->h);
 	map->colors = (int **)malloc(sizeof(int *) * map->h);
-	if (!map->z_matrix || !map->clrs)
+	if (!map->z_matrix || !map->colors)
 	{
 		free_map(map);
 		ft_printf("Memory allocation failed!\n");
@@ -48,7 +48,7 @@ void	alloc_map(t_map *map)
 	{
 		map->z_matrix[i] = (int *)malloc(sizeof(int) * map->w);
 		map->colors[i] = (int *)malloc(sizeof(int) * map->w);
-		if (!map->z_matrix[i] || !map->clrs[i])
+		if (!map->z_matrix[i] || !map->colors[i])
 		{
 			free_map(map);
 			ft_printf("Memory allocation failed!");
@@ -57,7 +57,7 @@ void	alloc_map(t_map *map)
 	}
 }
 
-static int	count_nbr(t_map *map, char *line, char *file)
+static int	count_nbr(t_map *map, char *line)
 {
 	int		cnt;
 	char	**split;
@@ -69,6 +69,11 @@ static int	count_nbr(t_map *map, char *line, char *file)
 		exit(EXIT_FAILURE);
 	}
 	split = ft_split(line, ' ');
+	if (!split)
+	{
+		free_map(map);
+		malloc_error();
+	}
 	cnt = 0;
 	while (split[cnt])
 		cnt++;
@@ -92,7 +97,7 @@ t_map	*init_map(char *file)
 		exit(EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
-	map->w = count_nbr(map, line, file);
+	map->w = count_nbr(map, line);
 	while (line)
 	{
 		map->h++;

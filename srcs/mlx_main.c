@@ -6,11 +6,11 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:33:55 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:18:21 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:51:39 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fdf"
+#include "../incs/fdf.h"
 
 int	mlx_main(t_map *map)
 {
@@ -25,7 +25,7 @@ int	mlx_main(t_map *map)
 		malloc_error();
 	}
 	init_mlx(vars);
-	mlx_hook(vars->win, w, 1L << 0, key_hook, vars);
+	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
 	mlx_hook(vars->win, 17, 1L << 17, close_win, vars);
 	draw(vars);
 	mlx_loop(vars->mlx);

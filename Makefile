@@ -6,7 +6,7 @@
 #    By: hsabir <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 16:54:50 by hsabir            #+#    #+#              #
-#    Updated: 2021/12/10 16:55:29 by hsabir           ###   ########.fr        #
+#    Updated: 2021/12/10 17:17:15 by hsabir           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,14 +78,12 @@ LFT_DIR = $(LIB_PATH)/libft
 
 LMLX_DIR_LINUX = $(LIB_PATH)/mlx_linux
 LMLX_DIR_MMS = $(LIB_PATH)/mlx_mms
-LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
+LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/minilibx_macos
 
 # SOURCES
-SRC_FILES =		main.c			utils.c			map_utils.c			\
-				handle_args.c	mlx_main.c		mlx_hook.c			\
-				draw.c			draw_utils.c	controls.c			\
-				mlx_utils.c		color.c			error.c
-
+SRC_FILES =	colors.c	draw.c	error_utils.c	hooks.c\
+		map_utils.c	mlx_utils.c	controls.c	draw_utils.c\
+		free.c	main.c	mlx_main.c
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

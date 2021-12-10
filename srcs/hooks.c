@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:24:36 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:28:53 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:36:27 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	key_hook(int keycode, t_vars *vars)
 		zoom(keycode, vars);
 	if (keycode == K_U || keycode == K_J || keycode == K_I
 		|| keycode == K_K || keycode == K_O || keycode == K_L)
-		rot(keycode, vars);
+		rotation(keycode, vars);
 	if (keycode == K_MINUS || keycode == K_PLUS)
 		flattening(keycode, vars);
 	if (keycode == K_P)

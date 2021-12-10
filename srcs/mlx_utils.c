@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:41:28 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 12:22:00 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:43:12 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	ft_max(int x, int y)
 {
 	if (x > y)
-		return (a);
-	return (b);
+		return (x);
+	return (y);
 }
 
 void	reset_vars(t_vars *vars)
@@ -31,7 +31,7 @@ void	reset_vars(t_vars *vars)
 	vars->rotate_z = 0;
 }
 
-int	init_vars(t_vars *vars)
+int	init_vars(t_vars *vars, t_map *map)
 {
 	vars->map = map;
 	vars->img = (t_img *)ft_calloc(1, sizeof(t_img));
@@ -44,7 +44,7 @@ int	init_vars(t_vars *vars)
 void	init_mlx(t_vars *vars)
 {
 	vars->mlx = mlx_init();
-	vars->img->img = mlx_new_image(vars->mx, WIN_W, WIN_H);
+	vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
 	vars->img->addr = mlx_get_data_addr(vars->img->img,
 			&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
 	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "Fils de fer");

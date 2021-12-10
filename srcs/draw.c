@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:41:07 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:16:15 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:33:55 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	bresenham(t_vars *vars, t_point start, t_point end)
 	init_bresenham(&start, &end, &delta, &sign);
 	line = delta.x - delta.y;
 	current = start;
-	while (current.x != end.x || current.y != current.y)
+	while (current.x != end.x || current.y != end.y)
 	{
 		img_pixel_put(vars, current.x, current.y, get_color(current, start, end, delta));
 		tmp = line * 2;
@@ -100,7 +100,7 @@ void	draw(t_vars *vars)
 					bresenham(vars, get_coordinations(vars, new_point(x, y, vars)),
 							get_coordinations(vars, new_point(x + 1, y, vars)));
 				if (y < vars->map->h - 1)
-					bresenham(vars, get_coordinations(new_point(x, y, vars)),
+					bresenham(vars, get_coordinations(vars, new_point(x, y, vars)),
 							get_coordinations(vars, new_point(x, y + 1, vars)));
 			}
 		}

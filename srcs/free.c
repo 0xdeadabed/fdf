@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:10:45 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 17:07:41 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:50:04 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@ void	free_map(t_map *map)
 
 	if (!map)
 		return ;
-	if (map->z_mt)
+	if (map->z_matrix)
 	{
 		i = -1;
 		while (++i < map->h)
 		{
-			if (map->z_mt[i])
-				free(map->z_mt[i]);
+			if (map->z_matrix[i])
+				free(map->z_matrix[i]);
 		}
-		free(map->z_mt);
+		free(map->z_matrix);
 	}
-	if (map->clrs)
+	if (map->colors)
 	{
 		i = -1;
 		while (++i < map->h)
 		{
-			if (map->clrs[i])
-				free(map->clrs[i]);
+			if (map->colors[i])
+				free(map->colors[i]);
 		}
-		free(map->clrs);
+		free(map->colors);
 	}
 	free(map);
 }

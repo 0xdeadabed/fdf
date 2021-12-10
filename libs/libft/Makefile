@@ -6,7 +6,7 @@
 #    By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/08 09:06:42 by hsabir            #+#    #+#              #
-#    Updated: 2021/12/08 09:08:52 by hsabir           ###   ########.fr        #
+#    Updated: 2021/12/10 17:02:35 by hsabir           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,17 +51,18 @@ OBJS_DIRS = $(addprefix $(OBJS_PATH)/, $(OBJS_DIRS_NAME))
 
 # SRC FILES
 SRCS_CHAR =	ft_isalpha.c	ft_isdigit.c	ft_isalnum.c	ft_isascii.c\
-			ft_isprint.c	ft_tolower.c	ft_toupper.c	ft_putchar.c
+			ft_isprint.c	ft_tolower.c	ft_toupper.c	ft_putchar.c\
+			ft_isspace.c
 
-SRCS_STR =  ft_putstr.c		ft_strchr.c		ft_strjoin.c	ft_strlen.c\
-			ft_strnstr.c	ft_substr.c		ft_strdup.c\
-			ft_strlcat.c	ft_strmapi.c	ft_strrchr.c	ft_split.c\
-			ft_striteri.c 	ft_strlcpy.c	ft_strncmp.c	ft_strtrim.c
+SRCS_STR =  	ft_putstr.c	ft_strchr.c	ft_strjoin.c	ft_strlen.c\
+		ft_strnstr.c	ft_substr.c	ft_strdup.c	ft_strlcat.c\
+		ft_strmapi.c	ft_strrchr.c	ft_split.c	ft_striteri.c\
+		ft_strlcpy.c	ft_strncmp.c	ft_strtrim.c	ft_striter.c
 
 SRCS_MEM =  ft_bzero.c		ft_calloc.c		ft_memchr.c		ft_memcmp.c\
 			ft_memcpy.c		ft_memmove.c	ft_memset.c	
 
-SRCS_NBR =	ft_atoi.c		ft_itoa.c
+SRCS_NBR =	ft_atoi.c		ft_itoa.c		ft_atoi_base.c
 
 SRCS_FD =	ft_putchar_fd.c	ft_putendl_fd.c	ft_putnbr_fd.c\
 			get_next_line.c ft_putstr_fd.c

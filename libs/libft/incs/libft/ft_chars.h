@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 10:40:57 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/07 16:13:57 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 15:58:52 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	ft_isdigit(int c);
 int	ft_isprint(int c);
 int	ft_tolower(int c);
 int	ft_toupper(int c);
+int	ft_isspace(int c);
 
 #endif

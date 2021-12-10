@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrs.h                                          :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 10:41:18 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:56:24 by hsabir           ###   ########.fr       */
+/*   Created: 2021/12/10 15:57:21 by hsabir            #+#    #+#             */
+/*   Updated: 2021/12/10 15:58:24 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_NBRS_H
-# define FT_NBRS_H
+#include "libft.h"
 
-char	*ft_itoa(int n);
-int		ft_atoi(const char *str);
-int		ft_atoi_base(const char *str, const char *base);
-
-#endif
+int	ft_isspace(int c)
+{
+	return (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r' || c == ' ');
+}

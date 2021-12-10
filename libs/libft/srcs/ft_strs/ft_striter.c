@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrs.h                                          :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 10:41:18 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 15:56:24 by hsabir           ###   ########.fr       */
+/*   Created: 2021/12/10 16:59:30 by hsabir            #+#    #+#             */
+/*   Updated: 2021/12/10 17:00:50 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_NBRS_H
-# define FT_NBRS_H
+#include "libft.h"
 
-char	*ft_itoa(int n);
-int		ft_atoi(const char *str);
-int		ft_atoi_base(const char *str, const char *base);
-
-#endif
+void	ft_striter(char *s, void (*f)(char *))
+{
+	if (!s || !f)
+		return ;
+	while (*s)
+		f(s++);
+}

@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:52:46 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/08 12:50:43 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:03:41 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	fill_matrix(t_map *map, int fd)
 		while (++x < map->w)
 		{
 			map->z_matrix[y][x] = ft_atoi(split[x]);
-			map->colors[y][x] = parse_color(map, split);
+			map->colors[y][x] = parse_color(map, split[x]);
 		}
 		free_split(split);
 		free(line);
@@ -69,7 +69,7 @@ static void	parse(t_map *map, char *file)
 	if (fd < 0)
 	{
 		free_map(map);
-		perror_exit(file);
+		print_error("Error while opening the map");
 	}
 	fill_matrix(map, fd);
 	close(fd);
@@ -85,6 +85,7 @@ void	handle_args(t_map **map, int argc, char **argv)
 	*map = init_map(file);
 	alloc_map(*map);
 	parse(*map, file);
+	get_z(*map);
 }
 
 int	main(int argc, char **argv)
@@ -93,4 +94,6 @@ int	main(int argc, char **argv)
 
 	map = NULL;
 	handle_args(&map, argc, argv);
+	mlx_main(map);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 10:41:24 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/07 12:01:14 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:01:34 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_putstr(char *s);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+void	ft_striter(char *s, void (*f)(char *));
 
 #endif

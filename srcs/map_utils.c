@@ -6,48 +6,38 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:14:16 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/08 12:36:00 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/10 15:37:55 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	free_map(t_map *map)
+void	get_z(t_map *map)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	if (!map)
-		return ;
-	if (map->z_mt)
+	y = -1;
+	while (++y < map->h)
 	{
-		i = -1;
-		while (++i < map->h)
+		x = -1;
+		while (++x < map->w)
 		{
-			if (map->z_mt[i])
-				free(map->z_mt[i]);
+			if (map->z_matrix[y][x] < map->min_z)
+				map->min_z = map->z_matrix[y][x];
+			else if (map->z_matrix[y][x] > map->max_z)
+				map->max_z = map->z_matrix[y][x];
 		}
-		free(map->z_mt);
 	}
-	if (map->clrs)
-	{
-		i = -1;
-		while (++i < map->h)
-		{
-			if (map->clrs[i])
-				free(map->clrs[i]);
-		}
-		free(map->clrs);
-	}
-	free(map);
 }
 
 void	alloc_map(t_map *map)
 {
 	int	i;
 
-	map->z_mt = (int **)malloc(sizeof(int *) * map->h);
-	map->clrs = (int **)malloc(sizeof(int *) * map->h);
-	if (!map->z_mt || !map->clrs)
+	map->z_matrix = (int **)malloc(sizeof(int *) * map->h);
+	map->colors = (int **)malloc(sizeof(int *) * map->h);
+	if (!map->z_matrix || !map->clrs)
 	{
 		free_map(map);
 		ft_printf("Memory allocation failed!\n");
@@ -56,9 +46,9 @@ void	alloc_map(t_map *map)
 	i = -1;
 	while (++i < map->h)
 	{
-		map->z_mt[i] = (int *)malloc(sizeof(int) * map->w);
-		map->clrs[i] = (int *)malloc(sizeof(int) * map->w);
-		if (!map->z_mt[i] || !map->clrs[i])
+		map->z_matrix[i] = (int *)malloc(sizeof(int) * map->w);
+		map->colors[i] = (int *)malloc(sizeof(int) * map->w);
+		if (!map->z_matrix[i] || !map->clrs[i])
 		{
 			free_map(map);
 			ft_printf("Memory allocation failed!");

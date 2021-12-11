@@ -6,7 +6,7 @@
 /*   By: 1mthe0wl </var/spool/mail/evil>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 18:31:09 by 1mthe0wl          #+#    #+#             */
-/*   Updated: 2021/12/11 18:37:41 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/11 19:03:24 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,34 +60,32 @@ static void	fill_matrix(t_map *map, int fd)
 	}
 }
 
-static void	parse(t_map *map, char *file)
-{
-	int	fd;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		free_map(map);
-		print_error("Error while opening the map");
-	}
-	fill_matrix(map, fd);
-	close(fd);
-}
-
 /*
  * Checks the number of arguments, if everything is fine,
- * then initializes the map according to the given argument (The path of the map)
+ * then initializes the map according to the given argument (The path of the map),
+ * We basically looking for the size of X and Y.
+ * Allocate memory for the map's size.
+ * fill the matrix.
  */
 
 void	handle_args(t_map **map, int argc, char **argv)
 {
 	char	*file;
+	int		fd;
 
 	if (argc != 2)
 		print_error("Invalid argument number.");
 	file = argv[1];
 	*map = init_map(file);
 	alloc_map(*map);
-	parse(*map, file);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		free_map(*map);
+		print_error("Error while opening the map :(");
+	}
+	fill_matrix(*map, fd);
+	close(fd);
+//	parse(*map, file);
 	get_z(*map);
 }

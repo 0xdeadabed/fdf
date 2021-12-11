@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:53:12 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/11 18:33:39 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/11 18:40:51 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,12 @@ typedef struct s_vars
 	float	rotate_y;
 	float	rotate_z;
 }	t_vars;
+
+/*
+ * w = X-axis
+ * h = Y-axis
+ * z_matrix = Z-axis
+ */
 
 typedef struct	s_map
 {

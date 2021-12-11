@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:53:12 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 17:53:57 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/11 18:33:39 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,9 @@ typedef struct	s_map
 	int	min_z;
 	int	max_z;
 }	t_map;
+
+// HANDLER
+void	handle_args(t_map **map, int argc, char **argv);
 
 // Map utils
 t_map	*init_map(char *file);

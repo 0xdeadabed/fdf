@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:43:54 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 17:48:49 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/12 17:22:12 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	img_pixel_put(t_vars *vars, int x, int y, int color)
 
 	if (y  >= WIN_H || x >= WIN_W || y < 0 || x < 0)
 		return ;
-	pixel = (y * vars->img->sz_l) + (x * (vars->img->bpp / 8));
+	pixel = (y * vars->img->size_line) + (x * (vars->img->bpp / 8));
 	if (vars->img->endian == 1)
 	{
 		vars->img->addr[pixel + 0] = (color >> 24);

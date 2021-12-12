@@ -6,30 +6,11 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:14:16 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 17:40:14 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/12 16:10:52 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
-
-void	get_z(t_map *map)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < map->h)
-	{
-		x = -1;
-		while (++x < map->w)
-		{
-			if (map->z_matrix[y][x] < map->min_z)
-				map->min_z = map->z_matrix[y][x];
-			else if (map->z_matrix[y][x] > map->max_z)
-				map->max_z = map->z_matrix[y][x];
-		}
-	}
-}
 
 void	alloc_map(t_map *map)
 {

@@ -6,16 +6,16 @@
 /*   By: 1mthe0wl </var/spool/mail/evil>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 18:31:09 by 1mthe0wl          #+#    #+#             */
-/*   Updated: 2021/12/11 19:03:24 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/12 18:50:02 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-static void	char_tolower(char *c)
-{
-	*c = ft_tolower(*c);
-}
+/*
+ * ft_atoi_base: takes a string and a base, it simply changes the string
+ * to number according to the given base.
+ */
 
 static int	parse_color(t_map *map, char *s)
 {
@@ -24,13 +24,20 @@ static int	parse_color(t_map *map, char *s)
 	if (*s && *s == 'x')
 	{
 		map->iscolor = 1;
-		ft_striter(s + 1, char_tolower);
+		while (++s)
+		{
+			ft_tolower(*s);
+		}
 		return (ft_atoi_base(s + 1, LHEX));
 	}
 	else
 		return (WHITE);
 	return (0);
 }
+
+/*
+ * From the map file, take the X, Y, Z and put them on the matrix.
+ */
 
 static void	fill_matrix(t_map *map, int fd)
 {
@@ -61,6 +68,30 @@ static void	fill_matrix(t_map *map, int fd)
 }
 
 /*
+ * We want to have the min and max Z in advance so we after can
+ * reuse them to nicely coloring by altitude.
+ */
+
+void	get_z(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < map->h)
+	{
+		x = -1;
+		while (++x < map->w)
+		{
+			if (map->z_matrix[y][x] < map->min_z)
+				map->min_z = map->z_matrix[y][x];
+			else if (map->z_matrix[y][x] > map->max_z)
+				map->max_z = map->z_matrix[y][x];
+		}
+	}
+}
+
+/*
  * Checks the number of arguments, if everything is fine,
  * then initializes the map according to the given argument (The path of the map),
  * We basically looking for the size of X and Y.
@@ -86,6 +117,5 @@ void	handle_args(t_map **map, int argc, char **argv)
 	}
 	fill_matrix(*map, fd);
 	close(fd);
-//	parse(*map, file);
 	get_z(*map);
 }

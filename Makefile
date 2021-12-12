@@ -6,7 +6,7 @@
 #    By: hsabir <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 16:54:50 by hsabir            #+#    #+#              #
-#    Updated: 2021/12/11 18:32:44 by 1mthe0wl         ###   ########.fr        #
+#    Updated: 2021/12/12 20:32:07 by 1mthe0wl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,11 @@ MAKE = make
 # COMPILER
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 CCFLAGS = -Wall -Wextra -Werror
 
-CCFLAGS += -D WIN_H=720 -D WIN_W=1280
-#CCFLAGS += -D WIN_H=1080 -D WIN_W=1920
+CCFLAGS += -D WIN_H=500 -D WIN_W=720
+CCFLAGS += -D WIN_H=1080 -D WIN_W=720
 
 CFLAGS += -D BUFFER_SIZE=10
 #CFLAGS += -D BUFFER_SIZE=500

@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:53:12 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/11 18:40:51 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/12 17:34:45 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@
 #  define K_D 100
 #  define K_P 112
 #  define K_MINUS 45
-#  define K_PLUS 61
+#  define K_PLUS 113
 #  define K_R 114
 #  define K_U 117
 #  define K_J 106
@@ -143,7 +143,7 @@ typedef struct	s_img
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		sz_l;
+	int		size_line;
 	int		endian;
 }	t_img;
 

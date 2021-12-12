@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:52:46 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/11 18:35:09 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/12 16:52:51 by 1mthe0wl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*
  * The entry of the program, we first handle the arguments,
- * then once everything is initialized perfectly we begin with mlx.
+ * once everything is initialized perfectly we begin with mlx.
  */
 
 int	main(int argc, char **argv)

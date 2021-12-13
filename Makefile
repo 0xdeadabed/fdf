@@ -10,15 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-# COLORS
-NOCOL=\033[0m
-RED=\033[1;31m
-YEL=\033[1;33m
-ORG=\033[0;33m
-GRN=\033[1;32m
-DGRAY=\033[1;30m
-BLU=\033[1;34m
-
 # NAMES
 NAME = fdf
 
@@ -41,24 +32,13 @@ CCFLAGS += -D WIN_H=500 -D WIN_W=720
 CCFLAGS += -D WIN_H=1080 -D WIN_W=720
 
 CFLAGS += -D BUFFER_SIZE=10
-#CFLAGS += -D BUFFER_SIZE=500
 
 CFLAGS += -O3
 CCFLAGS += -O3
 
-#CFLAGS += -fsanitize=address -g3
-#CCFLAGS += -fsanitize=address -g3
-
 CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
 LDFLAGS = -L ./
-
-# FDF COLORS
-#DCOLORS =	-D COLOR_1=0x00a0b0		\
-#			-D COLOR_2=0x4f372d		\
-#			-D COLOR_3=0xc2a36		\
-#			-D COLOR_4=0xeb6841		\
-#			-D COLOR_5=0xedc951
 
 CFLAGS += $(DCOLORS)
 CCFLAGS += $(DCOLORS)
@@ -100,18 +80,11 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	CFLAGS += -D OSX
-#	########## SHARED VARS       ##########
 	CCFLAGS += -framework OpenGL -framework AppKit
 	LDLIBS = -lft -lmlx
-#	########## mlx_mms           ##########
-#	LMLX_NAME = $(LMLX_NAME_MMS)
-#	LMLX_DIR = $(LMLX_DIR_MMS)
-#	########## mlx_macos_sierra  ##########
 	LMLX_NAME = $(LMLX_NAME_MACOS_SIERRA)
 	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
 endif
-
-.PHONY: all clean fclean re norm
 
 all: $(NAME) $(CHECKER_NAME)
 
@@ -144,12 +117,4 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-
-norm:
-	@printf "\n${GRN}##########${YEL} NORMINETTE ${GRN}##########${NOCOL}\n"
-	@printf "\n${GRN}LIBFT:${BLU}\n\n"
-	@norminette $(LFT_DIR)
-	@printf "\n${GRN}FDF:${BLU}\n\n"
-	@norminette $(INC_PATH)
-	@norminette $(SRC_PATH)
-	@printf "${NOCOL}"c
+.PHONY: all clean fclean re norm

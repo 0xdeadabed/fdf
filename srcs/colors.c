@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:24:42 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 17:26:10 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:22:25 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,18 @@ int	get_color(t_point current, t_point start, t_point end, t_point delta)
 		percentage = percent(start.x, end.x, current.x);
 	else
 		percentage = percent(start.y, end.y, current.y);
-	r = get_light((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF, percentage);
-	g = get_light((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF, percentage);
-	b = get_light(start.color & 0xFF, end.color & 0xFF, percentage);
+	r = get_light((start.color >> 16) & 0xFF,
+			(end.color >> 16) & 0xFF, percentage);
+	g = get_light((start.color >> 8) & 0xFF,
+			(end.color >> 8) & 0xFF, percentage);
+	b = get_light(start.color & 0xFF,
+			end.color & 0xFF, percentage);
 	return ((r << 16) | (g << 8) | b);
 }
 
 int	get_z_color(t_vars *vars, int current_z)
 {
-	double percentage;
+	double	percentage;
 
 	percentage = percent(vars->map->min_z, vars->map->max_z, current_z);
 	if (percentage < 0.2)

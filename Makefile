@@ -6,7 +6,7 @@
 #    By: hsabir <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/10 16:54:50 by hsabir            #+#    #+#              #
-#    Updated: 2021/12/12 20:32:07 by 1mthe0wl         ###   ########.fr        #
+#    Updated: 2021/12/13 12:23:11 by hsabir           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/minilibx_macos
 # SOURCES
 SRC_FILES =	colors.c	draw.c	error_utils.c	hooks.c\
 		map_utils.c	mlx_utils.c	controls.c	draw_utils.c\
-		free.c	main.c	mlx_main.c	handler.c
+		free.c	main.c	mlx_main.c	handler.c	bresenham_utils.c
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

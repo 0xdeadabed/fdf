@@ -6,33 +6,11 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:41:07 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/10 17:33:55 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:17:12 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
-
-static void	draw_menu(t_vars *vars)
-{
-	int		y;
-	void	*mlx;
-	void	*win;
-
-	mlx = vars->mlx;
-	win = vars->win;
-	y = 0;
-	mlx_string_put(mlx, win, 15, y += 15, WHITE, "Controls:");
-	mlx_string_put(mlx, win, 15, y += 50, WHITE, "Reset: R");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Move: W, A, S, D");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Zoom: Arrows");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Flattening: + / -");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Rotate:");
-	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  x (+ / -): U / J");
-	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  y (+ / -): I / K");
-	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  z (+ / -): O / L");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Toggle Perspective: P");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "(Isometric and Parallel)");
-}
 
 static int	slope(int i)
 {
@@ -40,6 +18,10 @@ static int	slope(int i)
 		return (-(i));
 	return (i);
 }
+
+/*
+ * Verify the slope to determine wheather increment y or not.
+ */
 
 void	init_bresenham(t_point *start, t_point *end, t_point *delta,
 		t_point *sign)
@@ -54,6 +36,12 @@ void	init_bresenham(t_point *start, t_point *end, t_point *delta,
 		sign->y = 1;
 }
 
+/*
+ * Generalized bresenham algorithm.
+ * Decide to wheather increent y or not, 
+ * x will be always incremented.
+ */
+
 void	bresenham(t_vars *vars, t_point start, t_point end)
 {
 	t_point	current;
@@ -67,7 +55,8 @@ void	bresenham(t_vars *vars, t_point start, t_point end)
 	current = start;
 	while (current.x != end.x || current.y != end.y)
 	{
-		img_pixel_put(vars, current.x, current.y, get_color(current, start, end, delta));
+		img_pixel_put(vars, current.x, current.y,
+			get_color(current, start, end, delta));
 		tmp = line * 2;
 		if (tmp > -delta.y)
 		{
@@ -81,6 +70,35 @@ void	bresenham(t_vars *vars, t_point start, t_point end)
 		}
 	}
 }
+
+/*
+ * Simply get the coordinates for the given vectors.
+ */
+
+t_point	get_coordinates(t_vars *vars, t_point point)
+{
+	point.x *= vars->zoom;
+	point.y *= vars->zoom;
+	point.z *= (vars->zoom / 10) * vars->flat;
+	rotate_x(vars, &point.y, &point.z);
+	rotate_y(vars, &point.x, &point.z);
+	rotate_z(vars, &point.x, &point.y);
+	isometric(vars, &point.x, &point.y, point.z);
+	point.x += vars->shift_x;
+	point.y += vars->shift_y;
+	return (point);
+}
+
+/*
+ * Set the image to 0, devide the height * width
+ * by bytes, 1 bit per pixel.
+ * Iterate through y, and iterate through x,
+ * while there is width, while there is height, apply the bresenham
+ * algorithm if x or y isn't reached the end.
+ * Before bresenham starts, it needs the start and end points,
+ * therefore we need to call the get_coordinations function
+ * with all the neccessire vectors.
+ */
 
 void	draw(t_vars *vars)
 {
@@ -97,11 +115,13 @@ void	draw(t_vars *vars)
 			while (++x < vars->map->w)
 			{
 				if (x < vars->map->w - 1)
-					bresenham(vars, get_coordinations(vars, new_point(x, y, vars)),
-							get_coordinations(vars, new_point(x + 1, y, vars)));
+					bresenham(vars,
+						get_coordinates(vars, get_point(x, y, vars)),
+						get_coordinates(vars, get_point(x + 1, y, vars)));
 				if (y < vars->map->h - 1)
-					bresenham(vars, get_coordinations(vars, new_point(x, y, vars)),
-							get_coordinations(vars, new_point(x, y + 1, vars)));
+					bresenham(vars,
+						get_coordinates(vars, get_point(x, y, vars)),
+						get_coordinates(vars, get_point(x, y + 1, vars)));
 			}
 		}
 	}

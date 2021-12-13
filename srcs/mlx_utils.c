@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:41:28 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/12 17:58:20 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/13 10:10:50 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ int	ft_zoom(int x, int y)
 	return (y);
 }
 
+/*
+ * 
+ */
+
 void	reset_vars(t_vars *vars)
 {
-	vars->zoom = ft_zoom((WIN_W / vars->map->w / 2), (WIN_H / vars->map->h) / 2);
+	vars->zoom = ft_zoom((WIN_W / vars->map->w / 2),
+			(WIN_H / vars->map->h) / 2);
 	vars->shift_x = WIN_W / 2;
 	vars->shift_y = (WIN_H - vars->map->h * vars->zoom) / 2;
 	vars->iso = 1;
@@ -30,6 +35,10 @@ void	reset_vars(t_vars *vars)
 	vars->rotate_y = 0;
 	vars->rotate_z = 0;
 }
+
+/*
+ * Initialize the t_vars struct and allocate memory to the image.
+ */
 
 int	init_vars(t_vars *vars, t_map *map)
 {

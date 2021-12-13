@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:53:12 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/12 17:34:45 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/13 11:37:13 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,12 @@ void	draw(t_vars *vars);
 // DRAW_UTILS
 void	img_pixel_put(t_vars *vars, int x, int y, int color);
 t_point get_coordinations(t_vars *vars, t_point point);
-t_point	new_point(int x, int y, t_vars *vars);
+t_point	get_point(int x, int y, t_vars *vars);
+void	rotate_x(t_vars *vars, int *y, int *z);
+void	rotate_y(t_vars *vars, int *x, int *z);
+void	rotate_z(t_vars *vars, int *x, int *y);
+void	isometric(t_vars *vars, int *x, int *y, int z);
+void	draw_menu(t_vars *vars);
 
 // CONTROLS
 void	zoom(int keycode, t_vars *vars);

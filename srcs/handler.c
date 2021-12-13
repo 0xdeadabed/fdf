@@ -6,7 +6,7 @@
 /*   By: 1mthe0wl </var/spool/mail/evil>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 18:31:09 by 1mthe0wl          #+#    #+#             */
-/*   Updated: 2021/12/12 18:50:02 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/13 09:25:31 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void	get_z(t_map *map)
 
 /*
  * Checks the number of arguments, if everything is fine,
- * then initializes the map according to the given argument (The path of the map),
+ * then initializes the map according to the given
+ * argument (The path of the map),
  * We basically looking for the size of X and Y.
  * Allocate memory for the map's size.
  * fill the matrix.

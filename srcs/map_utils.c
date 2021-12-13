@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:14:16 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/12 16:10:52 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/13 09:32:07 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	alloc_map(t_map *map)
 	}
 }
 
+// Count the number of columns it will then be map->w,
+// Width.
+
 static int	count_nbr(t_map *map, char *line)
 {
 	int		cnt;
@@ -61,6 +64,13 @@ static int	count_nbr(t_map *map, char *line)
 	free(split);
 	return (cnt);
 }
+
+/*
+ * Look for exactly howmany lines and columns exist
+ * and allocate memory for them.
+ * Two important values to have, are "map->w, and map->h"
+ * Width and Height of the map.
+ */
 
 t_map	*init_map(char *file)
 {

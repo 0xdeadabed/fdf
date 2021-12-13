@@ -6,71 +6,42 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:43:54 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/12 17:22:12 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/13 12:21:43 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	isometric(t_vars *vars, int *x, int *y, int z)
+void	draw_menu(t_vars *vars)
 {
-	int	prev_y;
-	int	prev_x;
+	int		y;
+	void	*mlx;
+	void	*win;
 
-	if (!vars->iso)
-		return ;
-	prev_x = *x;
-	prev_y = *y;
-	*x = (prev_x - prev_y) *  cos(0.523599);
-	*y = -z + (prev_x + prev_y) * sin(0.523599);
-}
-
-void	rotate_x(t_vars *vars, int *y, int *z)
-{
-	float	prev_y;
-
-	prev_y = *y;
-	*y = (prev_y * cos(vars->rotate_x)) + (*z * sin(vars->rotate_x));
-	*z = (-prev_y * sin(vars->rotate_x)) + (*z * cos(vars->rotate_x));
-}
-
-void	rotate_y(t_vars *vars, int *x, int *z)
-{
-	float	prev_x;
-
-	prev_x = *x;
-	*x = (*x * cos(vars->rotate_y)) + (*z * sin(vars->rotate_y));
-	*z = (-prev_x * sin(vars->rotate_y)) + (*z * cos(vars->rotate_y));
-}
-
-void	rotate_z(t_vars *vars, int *x, int *y)
-{
-	float	prev_x;
-
-	prev_x = *x;
-	*x = (*x * cos(vars->rotate_z)) - (*y * sin(vars->rotate_z));
-	*y = (prev_x * sin(vars->rotate_z)) + (*y * cos(vars->rotate_x));
-}
-
-t_point	get_coordinations(t_vars *vars, t_point point)
-{
-	point.x *= vars->zoom;
-	point.y *= vars->zoom;
-	point.z *= (vars->zoom / 10) * vars->flat;
-	rotate_x(vars, &point.y, &point.z);
-	rotate_y(vars, &point.x, &point.z);
-	rotate_z(vars, &point.x, &point.y);
-	isometric(vars, &point.x, &point.y, point.z);
-	point.x += vars->shift_x;
-	point.y += vars->shift_y;
-	return (point);
+	mlx = vars->mlx;
+	win = vars->win;
+	y = 0;
+	mlx_string_put(mlx, win, 15, y += 15, WHITE, "Menu:");
+	mlx_string_put(mlx, win, 15, y += 50, WHITE, "Reset: R");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Move: W, A, S, D");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Zoom: Arrows");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Scaling: + / -");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Rotations:");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  x+ = U || x- = J");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  y+ = I || y- = K");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  z+ = O || z- = L");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Toggle Perspective: P");
+	if (vars->iso == 1)
+		mlx_string_put(mlx, win, 15, y += 25, WHITE, "Isometric");
+	else if (vars->iso == 0)
+		mlx_string_put(mlx, win, 15, y += 25, WHITE, "Flat");
 }
 
 void	img_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	int	pixel;
 
-	if (y  >= WIN_H || x >= WIN_W || y < 0 || x < 0)
+	if (y >= WIN_H || x >= WIN_W || y < 0 || x < 0)
 		return ;
 	pixel = (y * vars->img->size_line) + (x * (vars->img->bpp / 8));
 	if (vars->img->endian == 1)
@@ -87,18 +58,4 @@ void	img_pixel_put(t_vars *vars, int x, int y, int color)
 		vars->img->addr[pixel + 2] = (color >> 16) & 0xFF;
 		vars->img->addr[pixel + 3] = (color >> 24);
 	}
-}
-
-t_point	new_point(int x, int y, t_vars *vars)
-{
-	t_point	point;
-
-	point.x = x;
-	point.y = y;
-	point.z = vars->map->z_matrix[y][x];
-	if (vars->map->iscolor)
-		point.color = vars->map->colors[y][x];
-	else
-		point.color = get_z_color(vars, point.z);
-	return (point);
 }

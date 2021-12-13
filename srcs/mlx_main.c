@@ -6,11 +6,16 @@
 /*   By: hsabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:33:55 by hsabir            #+#    #+#             */
-/*   Updated: 2021/12/12 17:43:57 by 1mthe0wl         ###   ########.fr       */
+/*   Updated: 2021/12/13 10:16:11 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
+
+/*
+ * Initialize and allocate the t_vars struct.
+ * 
+ */
 
 int	mlx_main(t_map *map)
 {
